@@ -23,6 +23,15 @@ export class Server {
   #sockets = new Set();
 
   /**
+   * @param {number} [port]
+   */
+  constructor(port) {
+    if (port !== undefined) {
+      this.listen(port);
+    }
+  }
+
+  /**
    * Closes the server and destroys all connected sockets.
    */
   close() {

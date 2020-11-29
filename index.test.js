@@ -13,9 +13,7 @@ process.on('unhandledRejection', (exception) => {
 
 const PORT = 3000;
 
-const app = new Server();
-
-app.listen(PORT);
+const app = new Server(PORT);
 
 /**
  * @return {import('./types').RequestHandler}
