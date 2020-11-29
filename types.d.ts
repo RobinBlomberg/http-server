@@ -1,6 +1,7 @@
 import { Request } from './src/Request.js';
 
 export class Server {
+  constructor(port?: number);
   close(): void;
   connect(url: string, ...handlers: RequestHandlersPayload): void;
   delete(url: string, ...handlers: RequestHandlersPayload): void;
