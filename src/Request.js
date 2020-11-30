@@ -5,24 +5,12 @@
  */
 
 import * as Http from 'http';
-import { parseStream } from './parseStream.js';
+import { Stream } from '@robinblomberg/stream';
 
 /**
  * A HTTP IncomingMessage wrapper.
  */
-export class Request {
-  /** @type {Buffer | undefined} */
-  #buffer;
-
-  /** @type {Http.IncomingMessage} */
-  #incomingMessage;
-
-  /** @type {*} */
-  #json;
-
-  /** @type {string | undefined} */
-  #text;
-
+export class Request extends Stream {
   /** @type {Headers} */
   headers;
 
@@ -40,24 +28,12 @@ export class Request {
    * @param {Parameters} parameters The URL parameters, (e.g. "/User/:userId" -> { userId: "378" }).
    */
   constructor(incomingMessage, parameters) {
-    this.#incomingMessage = incomingMessage;
+    super(incomingMessage);
+
     this.headers = /** @type {Headers} */ (incomingMessage.headers);
     this.method = /** @type {Method} */ (incomingMessage.method);
     this.url = /** @type {string} */ (incomingMessage.url);
     this.parameters = parameters;
-  }
-
-  /**
-   * Read the entire request body buffer and cache the result.
-   *
-   * @return {Promise<Buffer>}
-   */
-  async buffer() {
-    if (this.#buffer === undefined) {
-      this.#buffer = await parseStream(this.#incomingMessage);
-    }
-
-    return this.#buffer;
   }
 
   /**
@@ -74,34 +50,5 @@ export class Request {
    */
   has(name) {
     return this.headers[name.toLowerCase()] !== undefined;
-  }
-
-  /**
-   * Read the request body, parse it as JSON, and cache the result.
-   *
-   * @template T
-   * @return {Promise<T>}
-   */
-  async json() {
-    if (this.#json === undefined) {
-      const text = await this.text();
-      return JSON.parse(text);
-    }
-
-    return this.#json;
-  }
-
-  /**
-   * Read the request body, parse it as text, and cache the result.
-   *
-   * @return {Promise<string>}
-   */
-  async text() {
-    if (this.#text === undefined) {
-      const buffer = await this.buffer();
-      this.#text = buffer.toString();
-    }
-
-    return this.#text;
   }
 }
