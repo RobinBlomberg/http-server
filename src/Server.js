@@ -1,9 +1,9 @@
 /**
  * @typedef {import('net').Socket} Socket
- * @typedef {import('../types').Method} Method
- * @typedef {import('../types').RequestHandler} RequestHandler
- * @typedef {import('../types').RequestHandlerTree} RequestHandlerTree
- * @typedef {import('../types').RequestHandlersPayload} RequestHandlersPayload
+ * @typedef {import('./types').Method} Method
+ * @typedef {import('./types').RequestHandler} RequestHandler
+ * @typedef {import('./types').RequestHandlerTree} RequestHandlerTree
+ * @typedef {import('./types').RequestHandlersPayload} RequestHandlersPayload
  */
 import * as Http from 'http';
 import { Request } from './Request.js';

@@ -1,8 +1,8 @@
 /**
  * @typedef {globalThis.NodeJS.ErrnoException} ErrnoException
- * @typedef {import('../types').Chunk} Chunk
- * @typedef {import('../types').Headers} Headers
- * @typedef {import('../types').StatusCode} StatusCode
+ * @typedef {import('./types').Chunk} Chunk
+ * @typedef {import('./types').Headers} Headers
+ * @typedef {import('./types').StatusCode} StatusCode
  */
 
 import * as Crypto from 'crypto';

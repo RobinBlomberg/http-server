@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./types').RequestHandler} RequestHandler
+ * @typedef {import('./src/types').RequestHandler} RequestHandler
  */
 
 import * as Http from 'http';
@@ -16,7 +16,7 @@ const PORT = 3000;
 const app = new Server(PORT);
 
 /**
- * @return {import('./types').RequestHandler}
+ * @return {import('./src/types').RequestHandler}
  */
 const json = () => {
   /** @type {import('./src/HttpServer/index.types').RequestHandler} */

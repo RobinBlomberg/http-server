@@ -1,7 +1,7 @@
 /**
- * @typedef {import('../types').Headers} Headers
- * @typedef {import('../types').Method} Method
- * @typedef {import('../types').Parameters} Parameters
+ * @typedef {import('./types').Headers} Headers
+ * @typedef {import('./types').Method} Method
+ * @typedef {import('./types').Parameters} Parameters
  */
 
 import * as Http from 'http';

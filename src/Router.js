@@ -1,10 +1,10 @@
 /**
- * @typedef {import('../types').Method} Method
- * @typedef {import('../types').Parameters} Parameters
- * @typedef {import('../types').RequestHandler} RequestHandler
- * @typedef {import('../types').RequestHandlersPayload} RequestHandlersPayload
- * @typedef {import('../types').RequestHandlerTree} RequestHandlerTree
- * @typedef {import('../types').RouteMatch} RouteMatch
+ * @typedef {import('./types').Method} Method
+ * @typedef {import('./types').Parameters} Parameters
+ * @typedef {import('./types').RequestHandler} RequestHandler
+ * @typedef {import('./types').RequestHandlersPayload} RequestHandlersPayload
+ * @typedef {import('./types').RequestHandlerTree} RequestHandlerTree
+ * @typedef {import('./types').RouteMatch} RouteMatch
  */
 import { Url } from '@robinblomberg/url';
 

@@ -1,20 +1,4 @@
-import { Request } from './src/Request.js';
-
-export class Server {
-  constructor(port?: number);
-  close(): void;
-  connect(url: string, ...handlers: RequestHandlersPayload): void;
-  delete(url: string, ...handlers: RequestHandlersPayload): void;
-  get(url: string, ...handlers: RequestHandlersPayload): void;
-  head(url: string, ...handlers: RequestHandlersPayload): void;
-  listen(port: number): void;
-  on(method: Method, url: string, ...handlers: RequestHandlersPayload): void;
-  options(url: string, ...handlers: RequestHandlersPayload): void;
-  patch(url: string, ...handlers: RequestHandlersPayload): void;
-  post(url: string, ...handlers: RequestHandlersPayload): void;
-  put(url: string, ...handlers: RequestHandlersPayload): void;
-  trace(url: string, ...handlers: RequestHandlersPayload): void;
-}
+import { Request } from './Request.js';
 
 export type Chunk = string | Buffer;
 
@@ -33,6 +17,7 @@ export type RequestHandlerTree = {
     [Directory: string]: RequestHandlerTree;
   };
   methods: {
+    /* eslint-disable @typescript-eslint/naming-convention */
     CONNECT?: RequestHandler[];
     DELETE?: RequestHandler[];
     GET?: RequestHandler[];
@@ -42,6 +27,7 @@ export type RequestHandlerTree = {
     POST?: RequestHandler[];
     PUT?: RequestHandler[];
     TRACE?: RequestHandler[];
+    /* eslint-enable @typescript-eslint/naming-convention */
   };
   name: string | null;
 };
