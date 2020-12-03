@@ -27,7 +27,7 @@ export class Router {
    * @param {RequestHandlersPayload} handlers
    */
   add(method, url, ...handlers) {
-    const directories = Url.splitPath(url);
+    const directories = Url.split(url);
     let node = this.#routes;
 
     for (const directory of directories) {
@@ -54,7 +54,7 @@ export class Router {
    * @return {RouteMatch}
    */
   find(method, url) {
-    const directories = Url.splitPath(url);
+    const directories = Url.split(url);
     const parameters = /** @type {Parameters} */ ({});
 
     let node = this.#routes;
