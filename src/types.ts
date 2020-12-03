@@ -6,11 +6,26 @@ export type Headers = {
   [HeaderName: string]: number | string | string[];
 };
 
+/**
+ * @see https://tools.ietf.org/html/rfc2616
+ * @see https://tools.ietf.org/html/rfc5789
+ */
+export type Method =
+  | 'CONNECT'
+  | 'DELETE'
+  | 'GET'
+  | 'HEAD'
+  | 'OPTIONS'
+  | 'PATCH'
+  | 'POST'
+  | 'PUT'
+  | 'TRACE';
+
 export type Parameters = {
   [ParameterName: string]: string;
 };
 
-export type RequestHandlersPayload = (RequestHandler | RequestHandlersPayload)[];
+export type Promiseable<T> = T | Promise<T>;
 
 export type RequestHandlerTree = {
   children: {
@@ -32,27 +47,7 @@ export type RequestHandlerTree = {
   name: string | null;
 };
 
-export type RouteMatch = {
-  handlers: RequestHandler[];
-  parameters: Parameters;
-} | null;
-
-/**
- * @see https://tools.ietf.org/html/rfc2616
- * @see https://tools.ietf.org/html/rfc5789
- */
-export type Method =
-  | 'CONNECT'
-  | 'DELETE'
-  | 'GET'
-  | 'HEAD'
-  | 'OPTIONS'
-  | 'PATCH'
-  | 'POST'
-  | 'PUT'
-  | 'TRACE';
-
-export type Promiseable<T> = T | Promise<T>;
+export type RequestHandlersPayload = (RequestHandler | RequestHandlersPayload)[];
 
 export type RequestHandler =
   | Response
@@ -77,6 +72,11 @@ export type ResponseStatus =
     code: StatusCode;
     message?: string;
   };
+
+export type RouteMatch = {
+  handlers: RequestHandler[];
+  parameters: Parameters;
+} | null;
 
 export type StatusCode =
   | 100 | 101 | 102 | 103

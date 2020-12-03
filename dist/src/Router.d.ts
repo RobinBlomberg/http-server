@@ -46,20 +46,11 @@ export type RequestHandlerTree = {
     children: {
         [Directory: string]: import("./types").RequestHandlerTree;
     };
-    /**
-     * Handles request handler storage and retrieval.
-     */
     methods: {
         CONNECT?: import("./types").RequestHandler[] | undefined;
         DELETE?: import("./types").RequestHandler[] | undefined;
         GET?: import("./types").RequestHandler[] | undefined;
-        HEAD?: import("./types").RequestHandler[] | undefined; /**
-         * Add a request handler.
-         *
-         * @param {Method} method
-         * @param {string} url
-         * @param {RequestHandlersPayload} handlers
-         */
+        HEAD?: import("./types").RequestHandler[] | undefined;
         OPTIONS?: import("./types").RequestHandler[] | undefined;
         PATCH?: import("./types").RequestHandler[] | undefined;
         POST?: import("./types").RequestHandler[] | undefined;
