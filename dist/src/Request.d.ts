@@ -1,27 +1,47 @@
 /// <reference types="node" />
 /**
  * A HTTP IncomingMessage wrapper.
+ *
+ * @since 0.1.0
  */
 export class Request extends Stream {
     /**
-     * @param {Http.IncomingMessage} incomingMessage The original Node.js HTTP request.
-     * @param {Parameters} parameters The URL parameters, (e.g. "/User/:userId" -> { userId: "378" }).
+     * @param {Http.IncomingMessage} incomingMessage
+     * @param {Parameters} parameters
      */
     constructor(incomingMessage: Http.IncomingMessage, parameters: Parameters);
-    /** @type {Headers} */
+    /**
+     * @since 0.1.0
+     * @type {Headers}
+     */
     headers: Headers;
-    /** @type {Method} */
+    /**
+     * @since 0.1.0
+     * @type {Method}
+     */
     method: Method;
-    /** @type {string} */
+    /**
+     * @since 0.1.0
+     * @type {string}
+     */
     url: string;
-    /** @type {Parameters} */
+    /**
+     * @since 0.1.0
+     * @type {Parameters}
+     */
     parameters: Parameters;
     /**
+     * Gets a header.
+     *
+     * @since 0.1.0
      * @param {string} name
      * @return {string | number | string[] | undefined}
      */
     get(name: string): string | number | string[] | undefined;
     /**
+     * Checks whether a specified header exists.
+     *
+     * @since 0.1.0
      * @param {string} name
      * @return {boolean}
      */

@@ -1,6 +1,8 @@
 /// <reference types="node" />
 /**
  * A HTTP response wrapper.
+ *
+ * @since 0.1.0
  */
 export class Response {
     /**
@@ -25,31 +27,49 @@ export class Response {
      */
     private _writeHeaders;
     /**
+     * Sends the response to the client.
+     *
+     * @since 0.1.0
      * @param {Chunk | undefined} [chunk]
      */
     end(chunk?: Chunk | undefined): void;
     /**
+     * Sends a file to the client.
+     *
+     * @since 0.1.0
      * @param {string} path
      */
     sendFile(path: string): Promise<void>;
     /**
+     * Sets a single header.
+     *
+     * @since 0.1.0
      * @param {string} name
      * @param {number | string} value
      * @return {Response}
      */
     setHeader(name: string, value: number | string): Response;
     /**
+     * Assigns headers to the response.
+     *
+     * @since 0.1.0
      * @param {Headers} headers
      * @return {Response}
      */
     setHeaders(headers: Headers): Response;
     /**
+     * Sets the response HTTP status.
+     *
+     * @since 0.1.0
      * @param {StatusCode} statusCode
      * @param {string} [statusMessage]
      * @return {Response}
      */
     setStatus(statusCode: StatusCode, statusMessage?: string | undefined): Response;
     /**
+     * Sends a chunk to the client. Sends all cached headers if they have not been sent.
+     *
+     * @since 0.1.0
      * @param {Chunk | undefined} chunk
      * @return {Response}
      */

@@ -9,23 +9,37 @@ import { Stream } from '@robinblomberg/stream';
 
 /**
  * A HTTP IncomingMessage wrapper.
+ *
+ * @since 0.1.0
  */
 export class Request extends Stream {
-  /** @type {Headers} */
+  /**
+   * @since 0.1.0
+   * @type {Headers}
+   */
   headers;
 
-  /** @type {Method} */
+  /**
+   * @since 0.1.0
+   * @type {Method}
+   */
   method;
 
-  /** @type {string} */
+  /**
+   * @since 0.1.0
+   * @type {string}
+   */
   url;
 
-  /** @type {Parameters} */
+  /**
+   * @since 0.1.0
+   * @type {Parameters}
+   */
   parameters;
 
   /**
-   * @param {Http.IncomingMessage} incomingMessage The original Node.js HTTP request.
-   * @param {Parameters} parameters The URL parameters, (e.g. "/User/:userId" -> { userId: "378" }).
+   * @param {Http.IncomingMessage} incomingMessage
+   * @param {Parameters} parameters
    */
   constructor(incomingMessage, parameters) {
     super(incomingMessage);
@@ -37,6 +51,9 @@ export class Request extends Stream {
   }
 
   /**
+   * Gets a header.
+   *
+   * @since 0.1.0
    * @param {string} name
    * @return {string | number | string[] | undefined}
    */
@@ -45,6 +62,9 @@ export class Request extends Stream {
   }
 
   /**
+   * Checks whether a specified header exists.
+   *
+   * @since 0.1.0
    * @param {string} name
    * @return {boolean}
    */

@@ -12,6 +12,8 @@ import { StatusMessages } from './StatusMessages.js';
 
 /**
  * A HTTP response wrapper.
+ *
+ * @since 0.1.0
  */
 export class Response {
   /** @type {Headers} */
@@ -95,6 +97,9 @@ export class Response {
   }
 
   /**
+   * Sends the response to the client.
+   *
+   * @since 0.1.0
    * @param {Chunk | undefined} [chunk]
    */
   end(chunk) {
@@ -115,6 +120,9 @@ export class Response {
   }
 
   /**
+   * Sends a file to the client.
+   *
+   * @since 0.1.0
    * @param {string} path
    */
   async sendFile(path) {
@@ -174,6 +182,9 @@ export class Response {
   }
 
   /**
+   * Sets a single header.
+   *
+   * @since 0.1.0
    * @param {string} name
    * @param {number | string} value
    * @return {Response}
@@ -185,6 +196,9 @@ export class Response {
   }
 
   /**
+   * Assigns headers to the response.
+   *
+   * @since 0.1.0
    * @param {Headers} headers
    * @return {Response}
    */
@@ -195,6 +209,9 @@ export class Response {
   }
 
   /**
+   * Sets the response HTTP status.
+   *
+   * @since 0.1.0
    * @param {StatusCode} statusCode
    * @param {string} [statusMessage]
    * @return {Response}
@@ -210,6 +227,9 @@ export class Response {
   }
 
   /**
+   * Sends a chunk to the client. Sends all cached headers if they have not been sent.
+   *
+   * @since 0.1.0
    * @param {Chunk | undefined} chunk
    * @return {Response}
    */

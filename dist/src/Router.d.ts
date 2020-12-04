@@ -1,81 +1,96 @@
 /// <reference types="node" />
 /**
  * Class for controlling request handlers.
+ *
+ * @since 0.2.0
  */
 export class Router {
     /**
-     * Add a CONNECT request handler.
+     * Adds a CONNECT request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     connect(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a DELETE request handler.
+     * Adds a DELETE request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     delete(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
+     * Finds a request handler by method and URL.
+     *
+     * @since 0.2.0
      * @param {Method} method
      * @param {string} url
      * @return {RouteMatch}
      */
     find(method: Method, url: string): RouteMatch;
     /**
-     * Add a GET request handler.
+     * Adds a GET request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     get(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a HEAD request handler.
+     * Adds a HEAD request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     head(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a request handler.
+     * Adds a request handler.
      *
+     * @since 0.2.0
      * @param {Method} method
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     on(method: Method, url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a OPTIONS request handler.
+     * Adds a OPTIONS request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     options(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a PATCH request handler.
+     * Adds a PATCH request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     patch(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a POST request handler.
+     * Adds a POST request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     post(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a PUT request handler.
+     * Adds a PUT request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     put(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
-     * Add a TRACE request handler.
+     * Adds a TRACE request handler.
      *
+     * @since 0.2.0
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */

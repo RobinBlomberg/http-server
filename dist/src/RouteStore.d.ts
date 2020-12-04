@@ -1,16 +1,22 @@
 /**
  * Handles request handler storage and retrieval.
+ *
+ * @since 0.1.0
  */
 export class RouteStore {
     /**
-     * Add a request handler.
+     * Adds a request handler.
      *
+     * @since 0.1.0
      * @param {Method} method
      * @param {string} url
      * @param {RequestHandlersPayload} handlers
      */
     add(method: Method, url: string, ...handlers: import("./types").RequestHandlersPayload): void;
     /**
+     * Finds a request handler by method and URL.
+     *
+     * @since 0.1.0
      * @param {Method} method
      * @param {string} url
      * @return {RouteMatch}

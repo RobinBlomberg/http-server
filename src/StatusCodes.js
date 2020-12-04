@@ -1,4 +1,10 @@
 /* eslint-disable sort-keys */
+
+/**
+ * A HTTP status code enumeration.
+ *
+ * @since 0.1.0
+ */
 export const StatusCodes = {
   INFO_CONTINUE: 100,
   INFO_SWITCHING_PROTOCOLS: 101,

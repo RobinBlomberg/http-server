@@ -1,3 +1,8 @@
+/**
+ * A HTTP status message enumeration.
+ *
+ * @since 0.1.0
+ */
 export const StatusMessages: {
     100: string;
     101: string;

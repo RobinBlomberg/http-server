@@ -10,6 +10,8 @@ import { Url } from '@robinblomberg/url';
 
 /**
  * Handles request handler storage and retrieval.
+ *
+ * @since 0.1.0
  */
 export class RouteStore {
   /** @type {RequestHandlerTree} */
@@ -20,8 +22,9 @@ export class RouteStore {
   };
 
   /**
-   * Add a request handler.
+   * Adds a request handler.
    *
+   * @since 0.1.0
    * @param {Method} method
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
@@ -49,6 +52,9 @@ export class RouteStore {
   }
 
   /**
+   * Finds a request handler by method and URL.
+   *
+   * @since 0.1.0
    * @param {Method} method
    * @param {string} url
    * @return {RouteMatch}

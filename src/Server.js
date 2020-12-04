@@ -11,6 +11,8 @@ import { Router } from './Router.js';
 
 /**
  * Class for controlling HTTP requests.
+ *
+ * @since 0.1.0
  */
 export class Server extends Router {
   /** @type {RouterTree} */
@@ -34,7 +36,9 @@ export class Server extends Router {
   }
 
   /**
-   * Close the server and destroys all connected sockets.
+   * Closes the server and destroys all connected sockets.
+   *
+   * @since 0.1.0
    */
   close() {
     this.#server?.close(() => {
@@ -45,8 +49,9 @@ export class Server extends Router {
   }
 
   /**
-   * Start handling all HTTP requests on a specific port.
+   * Starts handling all HTTP requests on a specific port.
    *
+   * @since 0.1.0
    * @param {number} port
    * @example
    * const httpServer = new HttpServer();
@@ -139,8 +144,9 @@ export class Server extends Router {
   }
 
   /**
-   * Add a router to a URL endpoint.
+   * Adds a router to a URL endpoint.
    *
+   * @since 0.2.0
    * @param {string} endpoint
    * @param {Router} router
    */

@@ -11,13 +11,16 @@ import { RouteStore } from './RouteStore.js';
 
 /**
  * Class for controlling request handlers.
+ *
+ * @since 0.2.0
  */
 export class Router {
   #routeStore = new RouteStore();
 
   /**
-   * Add a CONNECT request handler.
+   * Adds a CONNECT request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -26,8 +29,9 @@ export class Router {
   }
 
   /**
-   * Add a DELETE request handler.
+   * Adds a DELETE request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -36,6 +40,9 @@ export class Router {
   }
 
   /**
+   * Finds a request handler by method and URL.
+   *
+   * @since 0.2.0
    * @param {Method} method
    * @param {string} url
    * @return {RouteMatch}
@@ -45,8 +52,9 @@ export class Router {
   }
 
   /**
-   * Add a GET request handler.
+   * Adds a GET request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -55,8 +63,9 @@ export class Router {
   }
 
   /**
-   * Add a HEAD request handler.
+   * Adds a HEAD request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -65,8 +74,9 @@ export class Router {
   }
 
   /**
-   * Add a request handler.
+   * Adds a request handler.
    *
+   * @since 0.2.0
    * @param {Method} method
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
@@ -76,8 +86,9 @@ export class Router {
   }
 
   /**
-   * Add a OPTIONS request handler.
+   * Adds a OPTIONS request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -86,8 +97,9 @@ export class Router {
   }
 
   /**
-   * Add a PATCH request handler.
+   * Adds a PATCH request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -96,8 +108,9 @@ export class Router {
   }
 
   /**
-   * Add a POST request handler.
+   * Adds a POST request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -106,8 +119,9 @@ export class Router {
   }
 
   /**
-   * Add a PUT request handler.
+   * Adds a PUT request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
@@ -116,8 +130,9 @@ export class Router {
   }
 
   /**
-   * Add a TRACE request handler.
+   * Adds a TRACE request handler.
    *
+   * @since 0.2.0
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
