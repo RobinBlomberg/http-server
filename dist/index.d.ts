@@ -1,4 +1,3 @@
-export { Server } from "./src/index.js";
 export type Chunk = string | Buffer;
 export type Headers = {
     [HeaderName: string]: string | number | string[];
@@ -67,3 +66,4 @@ export type StatusCode = 100 | 101 | 102 | 103 | 200 | 201 | 202 | 203 | 204 | 2
  * <T>
  */
 export type Promiseable<T> = T | Promise<T>;
+export { Router, Server } from "./src/index.js";

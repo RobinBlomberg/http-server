@@ -17,4 +17,4 @@
  * @typedef {import('./src/types').Promiseable<T>} Promiseable<T>
  */
 
-export { Server } from './src/index.js';
+export { Router, Server } from './src/index.js';

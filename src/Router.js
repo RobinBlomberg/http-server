@@ -1,51 +1,38 @@
 /**
+ * @typedef {import('net').Socket} Socket
  * @typedef {import('./types').Method} Method
- * @typedef {import('./types').Parameters} Parameters
  * @typedef {import('./types').RequestHandler} RequestHandler
- * @typedef {import('./types').RequestHandlersPayload} RequestHandlersPayload
  * @typedef {import('./types').RequestHandlerTree} RequestHandlerTree
+ * @typedef {import('./types').RequestHandlersPayload} RequestHandlersPayload
  * @typedef {import('./types').RouteMatch} RouteMatch
  */
-import { Url } from '@robinblomberg/url';
+
+import { RouteStore } from './RouteStore.js';
 
 /**
- * Handles request handler storage and retrieval.
+ * Class for controlling request handlers.
  */
 export class Router {
-  /** @type {RequestHandlerTree} */
-  #routes = {
-    children: {},
-    methods: {},
-    name: null
-  };
+  #routeStore = new RouteStore();
 
   /**
-   * Add a request handler.
+   * Add a CONNECT request handler.
    *
-   * @param {Method} method
    * @param {string} url
    * @param {RequestHandlersPayload} handlers
    */
-  add(method, url, ...handlers) {
-    const directories = Url.split(url);
-    let node = this.#routes;
+  connect(url, ...handlers) {
+    this.on('CONNECT', url, ...handlers);
+  }
 
-    for (const directory of directories) {
-      const key = directory[0] === ':' ? '*' : directory;
-      const name = directory[0] === ':' ? directory.slice(1) : null;
-
-      if (!node.children[key]) {
-        node.children[key] = {
-          children: {},
-          methods: {},
-          name
-        };
-      }
-
-      node = node.children[key];
-    }
-
-    node.methods[method] = handlers.flat(Infinity);
+  /**
+   * Add a DELETE request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  delete(url, ...handlers) {
+    this.on('DELETE', url, ...handlers);
   }
 
   /**
@@ -54,25 +41,87 @@ export class Router {
    * @return {RouteMatch}
    */
   find(method, url) {
-    const directories = Url.split(url);
-    const parameters = /** @type {Parameters} */ ({});
+    return this.#routeStore.find(method, url);
+  }
 
-    let node = this.#routes;
+  /**
+   * Add a GET request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  get(url, ...handlers) {
+    this.on('GET', url, ...handlers);
+  }
 
-    for (const directory of directories) {
-      node = node.children[directory] ?? node.children['*'];
+  /**
+   * Add a HEAD request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  head(url, ...handlers) {
+    this.on('HEAD', url, ...handlers);
+  }
 
-      if (!node) {
-        return null;
-      } else if (node.name !== null) {
-        parameters[node.name] = directory;
-      }
-    }
+  /**
+   * Add a request handler.
+   *
+   * @param {Method} method
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  on(method, url, ...handlers) {
+    this.#routeStore.add(method, url, ...handlers);
+  }
 
-    const handlers = node.methods[method];
+  /**
+   * Add a OPTIONS request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  options(url, ...handlers) {
+    this.on('OPTIONS', url, ...handlers);
+  }
 
-    return handlers
-      ? { handlers, parameters }
-      : null;
+  /**
+   * Add a PATCH request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  patch(url, ...handlers) {
+    this.on('PATCH', url, ...handlers);
+  }
+
+  /**
+   * Add a POST request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  post(url, ...handlers) {
+    this.on('POST', url, ...handlers);
+  }
+
+  /**
+   * Add a PUT request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  put(url, ...handlers) {
+    this.on('PUT', url, ...handlers);
+  }
+
+  /**
+   * Add a TRACE request handler.
+   *
+   * @param {string} url
+   * @param {RequestHandlersPayload} handlers
+   */
+  trace(url, ...handlers) {
+    this.on('TRACE', url, ...handlers);
   }
 }

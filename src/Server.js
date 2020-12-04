@@ -1,20 +1,20 @@
 /**
  * @typedef {import('net').Socket} Socket
  * @typedef {import('./types').Method} Method
- * @typedef {import('./types').RequestHandler} RequestHandler
- * @typedef {import('./types').RequestHandlerTree} RequestHandlerTree
- * @typedef {import('./types').RequestHandlersPayload} RequestHandlersPayload
+ * @typedef {import('./types').RouterTree} RouterTree
  */
+
 import * as Http from 'http';
 import { Request } from './Request.js';
 import { Response } from './Response.js';
 import { Router } from './Router.js';
 
 /**
- * Handles all HTTP requests.
+ * Class for controlling HTTP requests.
  */
-export class Server {
-  #router = new Router();
+export class Server extends Router {
+  /** @type {RouterTree} */
+  #routers = {};
 
   /** @type {Http.Server | undefined} */
   #server;
@@ -26,13 +26,15 @@ export class Server {
    * @param {number} [port]
    */
   constructor(port) {
+    super();
+
     if (port !== undefined) {
       this.listen(port);
     }
   }
 
   /**
-   * Closes the server and destroys all connected sockets.
+   * Close the server and destroys all connected sockets.
    */
   close() {
     this.#server?.close(() => {
@@ -40,46 +42,6 @@ export class Server {
         socket.destroy();
       }
     });
-  }
-
-  /**
-   * Add a CONNECT request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  connect(url, ...handlers) {
-    this.on('CONNECT', url, ...handlers);
-  }
-
-  /**
-   * Add a DELETE request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  delete(url, ...handlers) {
-    this.on('DELETE', url, ...handlers);
-  }
-
-  /**
-   * Add a GET request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  get(url, ...handlers) {
-    this.on('GET', url, ...handlers);
-  }
-
-  /**
-   * Add a HEAD request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  head(url, ...handlers) {
-    this.on('HEAD', url, ...handlers);
   }
 
   /**
@@ -96,7 +58,24 @@ export class Server {
       try {
         const method = /** @type {Method} */ (incomingMessage.method);
         const url = /** @type {string} */ (incomingMessage.url);
-        const routeMatch = this.#router.find(method, url);
+        let routeMatch = this.find(method, url);
+
+        if (!routeMatch) {
+          for (const endpoint in this.#routers) {
+            if (
+              Object.prototype.hasOwnProperty.call(this.#routers, endpoint) &&
+              url.startsWith(endpoint)
+            ) {
+              const router = this.#routers[endpoint];
+
+              routeMatch = router.find(method, url.slice(endpoint.length));
+
+              if (routeMatch) {
+                break;
+              }
+            }
+          }
+        }
 
         if (routeMatch) {
           const { handlers, parameters } = routeMatch;
@@ -160,63 +139,12 @@ export class Server {
   }
 
   /**
-   * Add a request handler.
+   * Add a router to a URL endpoint.
    *
-   * @param {Method} method
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
+   * @param {string} endpoint
+   * @param {Router} router
    */
-  on(method, url, ...handlers) {
-    this.#router.add(method, url, ...handlers);
-  }
-
-  /**
-   * Add a OPTIONS request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  options(url, ...handlers) {
-    this.on('OPTIONS', url, ...handlers);
-  }
-
-  /**
-   * Add a PATCH request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  patch(url, ...handlers) {
-    this.on('PATCH', url, ...handlers);
-  }
-
-  /**
-   * Add a POST request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  post(url, ...handlers) {
-    this.on('POST', url, ...handlers);
-  }
-
-  /**
-   * Add a PUT request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  put(url, ...handlers) {
-    this.on('PUT', url, ...handlers);
-  }
-
-  /**
-   * Add a TRACE request handler.
-   *
-   * @param {string} url
-   * @param {RequestHandlersPayload} handlers
-   */
-  trace(url, ...handlers) {
-    this.on('TRACE', url, ...handlers);
+  route(endpoint, router) {
+    this.#routers[endpoint] = router;
   }
 }

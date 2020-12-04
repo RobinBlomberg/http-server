@@ -1,4 +1,5 @@
 import { Request } from './Request.js';
+import { Router } from './Router.js';
 
 export type Chunk = string | Buffer;
 
@@ -77,6 +78,10 @@ export type RouteMatch = {
   handlers: RequestHandler[];
   parameters: Parameters;
 } | null;
+
+export type RouterTree = {
+  [Endpoint: string]: Router;
+};
 
 export type StatusCode =
   | 100 | 101 | 102 | 103
