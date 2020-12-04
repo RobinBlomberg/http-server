@@ -23,6 +23,7 @@ export class Router {
     delete(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
     /**
      * Finds a request handler by method and URL.
+     * All router middleware are prepended to the request handler array.
      *
      * @since 0.2.0
      * @param {Method} method
@@ -95,6 +96,14 @@ export class Router {
      * @param {RequestHandlersPayload} handlers
      */
     trace(url: string, ...handlers: import("./types.js").RequestHandlersPayload): void;
+    /**
+     * Adds request handler middleware.
+     * These will be executed in order for every router request.
+     *
+     * @since 0.3.0
+     * @param {RequestHandlersPayload} handlers
+     */
+    use(...handlers: import("./types.js").RequestHandlersPayload): void;
     #private;
 }
 export type Socket = import("net").Socket;

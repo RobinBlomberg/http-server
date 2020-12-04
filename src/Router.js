@@ -15,6 +15,9 @@ import { RouteStore } from './RouteStore.js';
  * @since 0.2.0
  */
 export class Router {
+  /** @type {RequestHandler[]} */
+  #middleware = [];
+
   #routeStore = new RouteStore();
 
   /**
@@ -41,6 +44,7 @@ export class Router {
 
   /**
    * Finds a request handler by method and URL.
+   * All router middleware are prepended to the request handler array.
    *
    * @since 0.2.0
    * @param {Method} method
@@ -48,7 +52,13 @@ export class Router {
    * @return {RouteMatch}
    */
   find(method, url) {
-    return this.#routeStore.find(method, url);
+    const match = this.#routeStore.find(method, url);
+    return match
+      ? {
+        handlers: [...this.#middleware, ...match.handlers],
+        parameters: match.parameters
+      }
+      : null;
   }
 
   /**
@@ -138,5 +148,16 @@ export class Router {
    */
   trace(url, ...handlers) {
     this.on('TRACE', url, ...handlers);
+  }
+
+  /**
+   * Adds request handler middleware.
+   * These will be executed in order for every router request.
+   *
+   * @since 0.3.0
+   * @param {RequestHandlersPayload} handlers
+   */
+  use(...handlers) {
+    this.#middleware.push(...handlers.flat(Infinity));
   }
 }
