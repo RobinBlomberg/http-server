@@ -1,20 +1,20 @@
 /**
- * @typedef {import('./src/types').Chunk} Chunk
- * @typedef {import('./src/types').Headers} Headers
- * @typedef {import('./src/types').Method} Method
- * @typedef {import('./src/types').Parameters} Parameters
- * @typedef {import('./src/types').RequestHandlersPayload} RequestHandlersPayload
- * @typedef {import('./src/types').RequestHandlerTree} RequestHandlerTree
- * @typedef {import('./src/types').RequestHandler} RequestHandler
- * @typedef {import('./src/types').Response} Response
- * @typedef {import('./src/types').ResponseStatus} ResponseStatus
- * @typedef {import('./src/types').RouteMatch} RouteMatch
- * @typedef {import('./src/types').StatusCode} StatusCode
+ * @typedef {import('./lib/types').Chunk} Chunk
+ * @typedef {import('./lib/types').Headers} Headers
+ * @typedef {import('./lib/types').Method} Method
+ * @typedef {import('./lib/types').Parameters} Parameters
+ * @typedef {import('./lib/types').RequestHandlersPayload} RequestHandlersPayload
+ * @typedef {import('./lib/types').RequestHandlerTree} RequestHandlerTree
+ * @typedef {import('./lib/types').RequestHandler} RequestHandler
+ * @typedef {import('./lib/types').Response} Response
+ * @typedef {import('./lib/types').ResponseStatus} ResponseStatus
+ * @typedef {import('./lib/types').RouteMatch} RouteMatch
+ * @typedef {import('./lib/types').StatusCode} StatusCode
  */
 
 /**
  * @template T
- * @typedef {import('./src/types').Promiseable<T>} Promiseable<T>
+ * @typedef {import('./lib/types').Promiseable<T>} Promiseable<T>
  */
 
-export { Router, Server } from './src/index.js';
+export { Router, Server } from './lib/index.js';

@@ -1,8 +1,12 @@
 /**
- * @return {import('../../src/types').RequestHandler}
+ * @typedef {import('../../lib/types').RequestHandler} RequestHandler
+ */
+
+/**
+ * @return {RequestHandler}
  */
 export const json = () => {
-  /** @type {import('./src/HttpServer/index.types').RequestHandler} */
+  /** @type {RequestHandler} */
   return (req) => {
     if (req.get('Content-Type') !== 'application/json') {
       return {
