@@ -1,1 +1,4 @@
-export { runTests } from './tests/index.test.js';
+import { test } from '@robinblomberg/test';
+import { runTests } from './tests/index.test.js';
+
+test('@robinblomberg/http-server', runTests)();

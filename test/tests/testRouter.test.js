@@ -1,6 +1,6 @@
 import { Client } from '@robinblomberg/http-client';
 import { equal } from '@robinblomberg/test';
-import { Router, Server } from '../../index.js';
+import { Router, Server } from '../../lib/index.js';
 
 const PORT = 3000;
 

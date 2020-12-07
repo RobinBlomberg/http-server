@@ -1,5 +1,5 @@
 /**
- * @typedef {import('../../lib/types').RequestHandler} RequestHandler
+ * @typedef {import('../../main').RequestHandler} RequestHandler
  */
 
 /**

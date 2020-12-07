@@ -1,6 +1,6 @@
 /**
- * @typedef {import('../../lib/types').RequestHandler} RequestHandler
  * @typedef {import('@robinblomberg/schema').Schema} Schema
+ * @typedef {import('../../main').RequestHandler} RequestHandler
  */
 
 /**

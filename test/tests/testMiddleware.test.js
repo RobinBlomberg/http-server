@@ -1,7 +1,7 @@
 import { Client } from '@robinblomberg/http-client';
 import * as s from '@robinblomberg/schema';
 import { equal } from '@robinblomberg/test';
-import { Server } from '../../index.js';
+import { Server } from '../../lib/index.js';
 import { body, cors, json } from '../middleware/index.js';
 
 const PATH = '/api/User';
